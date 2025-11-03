@@ -19,53 +19,187 @@
                 <li><a href="projects.html"><strong>PROJECTS</strong></a></li>
                 <li><a href="experiences.html">EXPERIENCES</a></li>
                 <li><a href="education.html">EDUCATION</a></li>
-                <li><a href="experiments.html">EXPERIMENTS</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <!-- Page Title -->
-        <div>
+        <header>
             <h1>MY PROJECTS</h1>
-        </div>
+        </header>
 
         <!-- Projects Grid -->
-        <div>
+        <section class="projects-grid">
             <!-- Project 1 -->
-            <article style="border: 1px solid black;">
+            <article class="project-card">
                 <header>
-                    <h2>E-Commerce Platform</h2>
+                    <h2>Detector-Redactor</h2>
                 </header>
-                <div>
-                    <img src="https://cloudfront-us-east-2.images.arcpublishing.com/reuters/HEEGIGOO6ZKVNB3MFM7IQPMLJU.jpg" alt="E-Commerce Platform screenshot" width="400" height="300">
-                </div>
+                <figure class="project-image-container">
+                    <picture>
+                        <source media="(min-width: 1024px)"
+                                srcset="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <source media="(min-width: 768px)"
+                                srcset="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&auto=format&fit=crop"
+                             alt="Data security and privacy concept showing PII detection and redaction system"
+                             width="400"
+                             height="300"
+                             loading="lazy"
+                             class="project-image">
+                    </picture>
+                </figure>
                 <section>
-                    <p>A full-featured e-commerce platform with <b>shopping cart</b>, <i>user authentication</i>, and <em>payment processing</em>. Built with modern web technologies and optimized for performance.</p>
-                    <h3>Technologies Used:</h3>
+                    <p>A Python tool designed to <b>analyze and redact Personally Identifiable Information (PII)</b> from text using the Presidio library. Features <i>custom recognizers</i>, <em>multi-language support</em>, and context-aware detection with scoring mechanisms.</p>
+                    <h3>Key Features:</h3>
                     <ul>
-                        <li>React.js</li>
-                        <li>Node.js & Express</li>
-                        <li>MongoDB</li>
-                        <li>Stripe API</li>
+                        <li>Custom PII recognizers with regex patterns</li>
+                        <li>Multi-language support (English, Spanish)</li>
+                        <li>Credit card, password, and VIN detection</li>
+                        <li>Configurable detection thresholds</li>
                     </ul>
-                    <div>
-                        <span style="border: 1px solid black;">React</span>
-                        <span style="border: 1px solid black;">Node.js</span>
-                        <span style="border: 1px solid black;">MongoDB</span>
-                    </div>
+                    <ul>
+                        <li><span>Python</span></li>
+                        <li><span>Presidio</span></li>
+                        <li><span>YAML</span></li>
+                    </ul>
                 </section>
-                <div>
-                    <button type="button" style="border: 2px solid black;">View Demo</button>
-                    <button type="button" style="border: 2px solid black;">GitHub</button>
-                </div>
+                <footer>
+                    <a href="https://github.com/MgMap/Detector-Redactor" target="_blank"><button type="button">GitHub</button></a>
+                </footer>
             </article>
-        </div>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <header>
+                    <h2>PayRoll Manager</h2>
+                </header>
+                <figure class="project-image-container">
+                    <picture>
+                        <source media="(min-width: 1024px)"
+                                srcset="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <source media="(min-width: 768px)"
+                                srcset="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&auto=format&fit=crop"
+                             alt="Payroll management system with employee data and salary calculations"
+                             width="400"
+                             height="300"
+                             loading="lazy"
+                             class="project-image">
+                    </picture>
+                </figure>
+                <section>
+                    <p>A comprehensive program designed to <b>manage payroll tasks efficiently</b> using advanced data structures like file trees, priority queues, and heaps. Features a <i>user-friendly GUI</i> built with <em>SFML</em> for smooth user experience.</p>
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>Employee management (add, remove, update)</li>
+                        <li>Payroll processing with calculations</li>
+                        <li>Data persistence (save and load)</li>
+                        <li>Advanced data structures for efficiency</li>
+                    </ul>
+                    <ul>
+                        <li><span>C++</span></li>
+                        <li><span>SFML</span></li>
+                        <li><span>CMake</span></li>
+                    </ul>
+                </section>
+                <footer>
+                    <a href="https://github.com/MgMap/PayRoll-Manager" target="_blank"><button type="button">GitHub</button></a>
+                </footer>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+                <header>
+                    <h2>CPP-ASM Exam App</h2>
+                </header>
+                <figure class="project-image-container">
+                    <picture>
+                        <source media="(min-width: 1024px)"
+                                srcset="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <source media="(min-width: 768px)"
+                                srcset="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&auto=format&fit=crop"
+                             alt="Code editor interface for C++ and assembly language exam application"
+                             width="400"
+                             height="300"
+                             loading="lazy"
+                             class="project-image">
+                    </picture>
+                </figure>
+                <section>
+                    <p>An <b>Electron-based desktop application</b> designed to facilitate C++ and assembly language exams. Features an <i>integrated development environment</i> with code compilation, execution, and <em>proctoring features</em> for educational assessment.</p>
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>ACE editor with C++ syntax highlighting</li>
+                        <li>Compilation & execution with error reporting</li>
+                        <li>Canvas LMS integration</li>
+                        <li>Proctoring controls and lockdown features</li>
+                    </ul>
+                    <ul>
+                        <li><span>C++</span></li>
+                        <li><span>JavaScript</span></li>
+                        <li><span>Electron</span></li>
+                    </ul>
+                </section>
+                <footer>
+                    <a href="https://github.com/MgMap/CPP-ASM-Exam-APP" target="_blank"><button type="button">GitHub</button></a>
+                </footer>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="project-card">
+                <header>
+                    <h2>Assembly Typing Game</h2>
+                </header>
+                <figure class="project-image-container">
+                    <picture>
+                        <source media="(min-width: 1024px)"
+                                srcset="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <source media="(min-width: 768px)"
+                                srcset="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop"
+                                type="image/jpeg">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop"
+                             alt="Typing game interface for learning assembly language instructions"
+                             width="400"
+                             height="300"
+                             loading="lazy"
+                             class="project-image">
+                    </picture>
+                </figure>
+                <section>
+                    <p>An <b>educational typing practice game</b> that helps users improve typing speed and accuracy while learning <i>assembly language instructions</i>. Features <em>three difficulty modes</em> with progressively challenging content and a scoring system.</p>
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>Three difficulty levels (easy, medium, hard)</li>
+                        <li>Scoring system for accuracy and speed</li>
+                        <li>Learn assembly language instructions</li>
+                        <li>User-friendly interface</li>
+                    </ul>
+                    <ul>
+                        <li><span>Assembly</span></li>
+                        <li><span>Visual Studio</span></li>
+                        <li><span>Education</span></li>
+                    </ul>
+                </section>
+                <footer>
+                    <a href="https://github.com/MgMap/Typing-Game" target="_blank"><button type="button">GitHub</button></a>
+                </footer>
+            </article>
+        </section>
 
         <!-- Additional Projects Link -->
-        <div style="border: 2px solid black;">
+        <aside>
             <p><a href="#more-projects">View All Projects on GitHub</a></p>
-        </div>
+        </aside>
 
         <!-- Custom Semantic Element -->
         <project-card>
@@ -74,7 +208,7 @@
         </project-card>
     </main>
 
-    <footer style="border: 1px solid black;">
+    <footer>
         <p>&copy; 2025 Min Aung Paing. All rights reserved.</p>
     </footer>
 </body>

@@ -26,35 +26,36 @@
                 <li><a href="projects.html">PROJECTS</a></li>
                 <li><a href="experiences.html">EXPERIENCES</a></li>
                 <li><a href="education.html">EDUCATION</a></li>
-                <li><a href="experiments.html">EXPERIMENTS</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section style="border: 2px solid black;">
+        <section class="hero-section">
             <h2>Welcome to My Portfolio</h2>
-            <div>
-                <img src="Assets/PR20240718_SCIDS.jpg" alt="Profile photo of Min Aung Paing" width="200" height="200">
-            </div>
-            <div>
-                <p><b>Min Aung Paing</b> <span>|</span> <i>Systems Engineer</i></p>
-            </div>
-            <div>
-                <p><em>Building innovative web solutions with modern technologies</em></p>
-            </div>
+            <figure class="profile-image-container">
+                <picture>
+                    <source media="(min-width: 768px)" srcset="Assets/PR20240718_SCIDS.jpg" type="image/jpeg">
+                    <source media="(min-width: 480px)" srcset="Assets/PR20240718_SCIDS.jpg" type="image/jpeg">
+                    <img src="Assets/PR20240718_SCIDS.jpg"
+                         alt="Profile photo of Min Aung Paing wearing professional attire, smiling at the camera"
+                         width="200"
+                         height="200"
+                         loading="eager"
+                         class="profile-image">
+                </picture>
+            </figure>
+            <p><b>Min Aung Paing</b> <span>|</span> <i>Systems Engineer</i></p>
+            <p><em>Building innovative web solutions with modern technologies</em></p>
         </section>
 
-        <!-- Custom Element (Hello World) -->
-        <hello-world></hello-world>
-
         <!-- Quick Links -->
-        <section style="border: 2px solid black;">
+        <section class="quick-access">
             <h2>Quick Access</h2>
-            <table style="border: 1px solid black;">
+            <table>
                 <tr>
-                    <td style="border: 1px solid black;">
+                    <td>
                         <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="24" cy="24" r="20" stroke="black" stroke-width="2" fill="none"/>
                             <text x="24" y="30" text-anchor="middle" font-size="20">A</text>
@@ -62,7 +63,7 @@
                         <br>
                         <a href="about.html">About</a>
                     </td>
-                    <td style="border: 1px solid black;">
+                    <td>
                         <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <rect x="4" y="4" width="40" height="40" stroke="black" stroke-width="2" fill="none"/>
                             <text x="24" y="30" text-anchor="middle" font-size="20">P</text>
@@ -70,7 +71,7 @@
                         <br>
                         <a href="projects.html">Projects</a>
                     </td>
-                    <td style="border: 1px solid black;">
+                    <td>
                         <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <polygon points="24,4 44,44 4,44" stroke="black" stroke-width="2" fill="none"/>
                             <text x="24" y="35" text-anchor="middle" font-size="20">E</text>
@@ -78,7 +79,7 @@
                         <br>
                         <a href="experiences.html">Experience</a>
                     </td>
-                    <td style="border: 1px solid black;">
+                    <td>
                         <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="24" cy="24" r="20" stroke="black" stroke-width="2" fill="none"/>
                             <text x="24" y="30" text-anchor="middle" font-size="20">D</text>
@@ -91,36 +92,40 @@
         </section>
 
         <!-- Featured Content -->
-        <article style="border: 2px solid black;">
+        <article>
             <h2>Featured Project</h2>
-            <div>
+            <section>
                 <h3>E-Commerce Platform</h3>
                 <p>A full-stack e-commerce solution built with modern web technologies. Features include user authentication, product catalog, shopping cart, and payment processing.</p>
                 <p><b>Technologies:</b> React, Node.js, MongoDB, Stripe API</p>
                 <button type="button">View Project Details</button>
-            </div>
+            </section>
         </article>
 
         <!-- Skills Progress -->
-        <section style="border: 2px solid black;">
+        <section>
             <h3>Technical Skills</h3>
-            <div>
-                <p>JavaScript Proficiency</p>
-                <progress value="90" max="100">90%</progress>
-                <br>
-                <p>React Development</p>
-                <progress value="85" max="100">85%</progress>
-                <br>
-                <p>Node.js Backend</p>
-                <progress value="80" max="100">30%</progress>
-            </div>
+            <ul>
+                <li>
+                    <p>JavaScript Proficiency</p>
+                    <progress value="90" max="100">90%</progress>
+                </li>
+                <li>
+                    <p>React Development</p>
+                    <progress value="85" max="100">85%</progress>
+                </li>
+                <li>
+                    <p>Node.js Backend</p>
+                    <progress value="80" max="100">30%</progress>
+                </li>
+            </ul>
         </section>
 
         <!-- Contact Form -->
-        <section style="border: 2px solid black;">
+        <section>
             <h2>Get In Touch</h2>
             <form action="https://httpbin.org/post" method="post">
-                <fieldset style="border: 1px solid black;">
+                <fieldset>
                     <legend>Contact Information</legend>
 
                     <label for="name">Name:</label>
@@ -144,35 +149,10 @@
             </form>
         </section>
 
-        <!-- Embedded Content Demo -->
-        <section style="border: 2px solid black;">
-            <h3>Sample Demo Video</h3>
-            <iframe
-                width="560"
-                height="315"
-                src="projects.html"
-                title="Sample Demo Project"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </section>
-
-        <!-- Custom CSS Semantic Element -->
-        <project-card>
-            <h3>Quick Project Card</h3>
-            <p>This is a custom semantic element styled with CSS</p>
-        </project-card>
-
-        <!-- Dialog Demo -->
-        <dialog id="welcome-dialog" open>
-            <h2>Welcome!</h2>
-            <p>Thank you for visiting my portfolio website.</p>
-            <button type="button">Close</button>
-        </dialog>
     </main>
 
     <footer>
-        <div>
+        <section>
             <h3>Connect With Me</h3>
             <nav>
                 <ul>
@@ -181,10 +161,8 @@
                     <li><a href="mailto:minaungpaing515@gmail.com">Email</a></li>
                 </ul>
             </nav>
-        </div>
-        <div>
-            <p>&copy; 2025 Min Aung Paing. All rights reserved.</p>
-        </div>
+        </section>
+        <p>&copy; 2025 Min Aung Paing. All rights reserved.</p>
     </footer>
 </body>
 </html>

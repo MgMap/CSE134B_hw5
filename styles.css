@@ -362,6 +362,39 @@ section h2 + div > div:has(svg) {
     }
 }
 
+/* Projects Grid - Three Column Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
+    gap: var(--spacing-xl, 2rem);
+    margin-bottom: var(--spacing-xl, 2rem);
+}
+
+/* Project cards */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all var(--transition-base, 250ms);
+
+    &:hover {
+        /* Transform (3 pts) */
+        transform: translateY(-0.5rem);
+        box-shadow: var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1));
+    }
+
+    & > div:last-child {
+        margin-top: auto;
+        display: flex;
+        gap: var(--spacing-sm, 0.5rem);
+        padding-top: var(--spacing-md, 1rem);
+
+        & button {
+            flex: 1;
+        }
+    }
+}
+
 /* Education Page - Two Column Grid */
 main > div:has(section:first-child > h2:contains("Research")),
 main > div:nth-child(2):has(section) {
@@ -508,15 +541,28 @@ section:has(ol) {
                 color: var(--color-border-light, #d4d4d4);
             }
 
-            & article {
+            & article.blog-post {
                 border: 1px solid var(--color-border-secondary, #737373);
                 padding: var(--spacing-lg, 1.5rem);
                 transition: all var(--transition-base, 250ms);
+                display: flex;
+                gap: var(--spacing-md, 1rem);
+                align-items: flex-start;
 
                 &:hover {
                     border-color: var(--color-border-primary, #404040);
                     /* Transform (3 pts) */
                     transform: translateX(0.5rem);
+                }
+
+                & picture {
+                    flex-shrink: 0;
+                    width: 6rem; /* 96px */
+                    height: 6rem; /* 96px */
+                }
+
+                & > div {
+                    flex: 1;
                 }
 
                 & h3 {
@@ -653,13 +699,81 @@ section:has(progress) {
 }
 
 /* =================================================================
-   Images & Media
+   Images & Media - Optimized for Part 2 (15 pts)
    ================================================================= */
+
+/* Base image styles */
 img {
     max-width: 100%;
     height: auto;
     display: block;
     border: 1px solid var(--color-border-light, #d4d4d4);
+}
+
+/* Profile image optimization */
+.profile-image-container {
+    width: 100%;
+    max-width: 12.5rem; /* 200px */
+    height: 12.5rem; /* 200px */
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid var(--color-border-primary, #404040);
+    border-radius: 50%;
+
+    & picture {
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        & img.profile-image {
+            width: 100%;
+            height: 100%;
+            /* object-fit and object-position for Part 2 */
+            object-fit: cover;
+            object-position: center top;
+            border: none;
+        }
+    }
+}
+
+/* Project image container */
+.project-image-container {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--color-bg-primary, #fafafa);
+    border: 1px solid var(--color-border-light, #d4d4d4);
+    margin-bottom: var(--spacing-md, 1rem);
+
+    & picture {
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        & img.project-image {
+            width: 100%;
+            height: 100%;
+            /* object-fit for proper aspect ratio */
+            object-fit: cover;
+            object-position: center center;
+            border: none;
+            transition: transform var(--transition-base, 250ms);
+
+            &:hover {
+                /* Transform on hover */
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+/* Responsive demo image in experiments */
+.responsive-demo-image {
+    width: 100%;
+    max-width: 37.5rem; /* 600px */
+    height: auto;
+    object-fit: contain;
+    object-position: center center;
 }
 
 /* Hero/Featured image */
@@ -675,6 +789,19 @@ picture {
     & img {
         width: 100%;
     }
+}
+/* Blog post thumbnails */
+.blog-thumbnail {
+    width: 6rem; /* 96px */
+    height: 6rem; /* 96px */
+    object-fit: cover;
+    object-position: center center;
+    border: 1px solid var(--color-border-secondary, #737373);
+}
+
+/* Lazy loading optimization */
+img[loading="lazy"] {
+    content-visibility: auto;
 }
 
 /* Audio & Video */
@@ -780,7 +907,7 @@ footer {
 }
 
 /* =================================================================
-   Animations (3 pts)
+   Animations
    ================================================================= */
 
 /* Slide down animation for header */
@@ -870,6 +997,31 @@ dialog[open] {
     section:has(table) table tr {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Mobile image optimizations */
+    .profile-image-container {
+        max-width: 9.375rem; /* 150px */
+        height: 9.375rem; /* 150px */
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+
+    .blog-post {
+        flex-direction: column;
+
+        & picture {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        & .blog-thumbnail {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+    }
 }
 
 /* Tablet devices (768px - 1023px) */
@@ -880,6 +1032,16 @@ dialog[open] {
 
     main {
         max-width: 75rem; /* 1200px */
+    }
+
+    /* Tablet image optimizations */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablet */
+    }
+
+    .profile-image-container {
+        max-width: 11.25rem; /* 180px */
+        height: 11.25rem; /* 180px */
     }
 }
 
@@ -965,62 +1127,3 @@ dialog[open] {
 .font-mono {
     font-family: var(--font-mono, monospace);
 }
-
-/* =================================================================
-   SUMMARY OF HW3 REQUIREMENTS IMPLEMENTED:
-
-   1. Flexbox/Grid Layouts (10 pts): ✓
-      - Header navigation uses flexbox
-      - Main content uses grid for multi-column layouts
-      - Experience timeline uses flexbox
-      - Contact links use grid
-      - Skills sections use grid
-
-   2. CSS Variables with fallbacks (2 pts): ✓
-      - Comprehensive :root variables for colors, spacing, fonts
-      - All variables include fallback values
-
-   3. Custom Fonts with fallbacks (2 pts): ✓
-      - Google Fonts: Inter and Fira Code
-      - Complete fallback stack for each
-
-   4. Relative units (3 pts): ✓
-      - rem for font sizes
-      - em for component-relative sizing
-      - % for flexible widths
-
-   5. Dynamic viewport units (2 pts): ✓
-      - dvh used for body min-height
-      - Ensures proper rendering on mobile with dynamic toolbars
-
-   6. Animations, Transitions, Transforms (3 pts): ✓
-      - slideDown animation for header
-      - fadeIn animation for main content
-      - Transform on hover for cards, buttons, links
-      - Smooth transitions throughout
-
-   7. Media Queries: ✓
-      - Mobile (< 768px)
-      - Tablet (768px - 1023px)
-      - Desktop (>= 1024px)
-      - Large desktop (>= 1440px)
-
-   8. Nested and Scoped CSS (4 pts): ✓
-      - Extensive use of & nesting throughout
-      - Scoped selectors for sections, articles, headers
-
-   9. Baseline 2024/2025 feature (4 pts): ✓
-      - light-dark() function for color scheme
-      - Automatic dark mode support
-
-   10. Extra Credit - :has() selector (2 pts): ✓
-       - section:has(form) for form sections
-       - section:has(iframe) for iframe sections
-       - nav a:has(strong) for active navigation
-
-   11. Extra Credit - color-mix() (2 pts): ✓
-       - Used for hover states on table cells
-       - Background color mixing for skill tags
-       - Form section background
-
-   ================================================================= */
