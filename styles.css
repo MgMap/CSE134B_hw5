@@ -10,17 +10,27 @@
    CSS Variables with Fallbacks (2 pts)
    ================================================================= */
 :root {
-    /* Color Palette */
-    --color-bg-primary: #fafafa;
-    --color-bg-secondary: #ffffff;
-    --color-border-primary: #404040;
-    --color-border-secondary: #737373;
-    --color-border-light: #d4d4d4;
-    --color-text-primary: #171717;
-    --color-text-secondary: #525252;
+    /* Color Palette - Enhanced for better aesthetics & contrast */
+    --color-bg-primary: #eef3f7; /* softened off-white to reduce stark whiteness */
+    --color-bg-secondary: rgba(255,255,255,0.88); /* slightly translucent for glass effect */
+    --color-bg-accent: #eaf6ff; /* Subtle blue tint */
+    --color-surface: rgba(255,255,255,0.7); /* glass surface fallback */
+    --color-border-primary: #2b3742;
+    --color-border-secondary: #6b7280;
+    --color-border-light: rgba(11,22,34,0.06);
+    --color-text-primary: #0b1720; /* stronger contrast for accessibility */
+    --color-text-secondary: #344153;
+    --color-text-muted: #6b7280;
     --color-accent: #2563eb;
-    --color-accent-hover: #1e40af;
-    --color-hover-bg: #f5f5f5;
+    --color-accent-hover: #1e4fd8;
+    --color-accent-light: #dbeafe;
+    --color-hover-bg: #f4f6f9;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+
+    /* Glassmorphism helpers */
+    --glass-bg: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(245,249,255,0.5));
+    --glass-border: rgba(255,255,255,0.5);
 
     /* Spacing - Relative units (3 pts) */
     --spacing-xs: 0.25rem;
@@ -95,57 +105,73 @@ body {
 }
 
 /* =================================================================
-   Typography
+   Typography - Enhanced for better readability and hierarchy
    ================================================================= */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.3; /* Improved line height for readability */
     margin-bottom: var(--spacing-md, 1rem);
+    color: var(--color-text-primary, #171717);
+    letter-spacing: -0.01em; /* Subtle tracking for headings */
 }
 
 h1 {
     font-size: var(--font-size-4xl, 2.25rem);
     font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 h2 {
     font-size: var(--font-size-3xl, 1.875rem);
+    font-weight: 600;
 }
 
 h3 {
     font-size: var(--font-size-2xl, 1.5rem);
+    font-weight: 600;
 }
 
 h4 {
     font-size: var(--font-size-xl, 1.25rem);
+    font-weight: 500;
 }
 
 h5 {
     font-size: var(--font-size-lg, 1.125rem);
+    font-weight: 500;
 }
 
 h6 {
     font-size: var(--font-size-base, 1rem);
+    font-weight: 500;
 }
 
 p {
     margin-bottom: var(--spacing-md, 1rem);
+    line-height: 1.7; /* Improved readability for body text */
+    color: var(--color-text-secondary, #525252);
 }
 
 a {
     color: var(--color-accent, #2563eb);
     text-decoration: none;
-    transition: color var(--transition-fast, 150ms);
+    transition: all var(--transition-fast, 150ms);
+    position: relative;
 
     &:hover {
-        color: var(--color-accent-hover, #1e40af);
+        color: var(--color-accent-hover, #1d4ed8);
         text-decoration: underline;
     }
 
     &:focus-visible {
         outline: 2px solid var(--color-accent, #2563eb);
-        outline-offset: 2px;
+        outline-offset: 3px;
         border-radius: var(--radius-sm, 0.125rem);
+    }
+
+    &:active {
+        color: var(--color-accent-hover, #1d4ed8);
     }
 }
 
@@ -169,14 +195,15 @@ main {
 }
 
 /* =================================================================
-   Header & Navigation - Flexbox Layout (10 pts)
-   Nested CSS (4 pts)
+   Header & Navigation - Enhanced design
    ================================================================= */
 header {
     background-color: var(--color-bg-secondary, #ffffff);
-    border: 2px solid var(--color-border-primary, #404040);
+    border: 1px solid var(--color-border-light, #e5e7eb);
+    border-radius: var(--radius-lg, 0.5rem);
     padding: var(--spacing-lg, 1.5rem);
     margin-bottom: var(--spacing-xl, 2rem);
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
     /* Animations (3 pts) */
     animation: slideDown 0.4s ease-out;
 
@@ -199,28 +226,35 @@ header {
             & li {
                 & a {
                     display: inline-block;
-                    padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
-                    border: 1px solid var(--color-border-secondary, #737373);
+                    padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
+                    border: 1px solid var(--color-border-light, #e5e7eb);
                     background-color: var(--color-bg-secondary, #ffffff);
                     color: var(--color-text-primary, #171717);
                     font-weight: 500;
                     letter-spacing: 0.05em;
                     transition: all var(--transition-base, 250ms);
+                    border-radius: var(--radius-md, 0.25rem);
                     /* Transform (3 pts) */
                     transform: translateY(0);
 
                     &:hover {
-                        background-color: var(--color-hover-bg, #f5f5f5);
-                        border-color: var(--color-border-primary, #404040);
+                        background-color: var(--color-accent-light, #dbeafe);
+                        border-color: var(--color-accent, #2563eb);
+                        color: var(--color-accent, #2563eb);
                         /* Transform (3 pts) */
                         transform: translateY(-2px);
-                        box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+                        box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
                         text-decoration: none;
                     }
 
                     &:focus-visible {
                         outline: 2px solid var(--color-accent, #2563eb);
                         outline-offset: 2px;
+                        text-decoration: none;
+                    }
+
+                    &:active {
+                        transform: translateY(0);
                     }
 
                     /* Active state (indicated by strong tag) */
@@ -234,23 +268,54 @@ header {
     }
 }
 
-/* Navigation active state styling */
+/* Navigation active state styling - Enhanced for clarity */
 nav a:has(strong) {
-    background-color: var(--color-hover-bg, #f5f5f5);
-    border-color: var(--color-border-primary, #404040);
+    background-color: var(--color-accent, #2563eb);
+    border-color: var(--color-accent, #2563eb);
+    color: var(--color-bg-secondary, #ffffff);
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+
+    & strong {
+        color: var(--color-bg-secondary, #ffffff);
+    }
+
+    &:hover {
+        background-color: var(--color-accent-hover, #1d4ed8);
+        border-color: var(--color-accent-hover, #1d4ed8);
+    }
 }
 
 /* =================================================================
-   Page Title Section
+   Hero Section - Enhanced for better visual appeal
    ================================================================= */
+.hero-section {
+    text-align: center;
+    padding: var(--spacing-2xl, 3rem) var(--spacing-xl, 2rem);
+    background: linear-gradient(135deg, var(--color-bg-secondary, #ffffff), var(--color-bg-accent, #f0f9ff));
+    border-radius: var(--radius-lg, 0.5rem);
+    margin-bottom: var(--spacing-xl, 2rem);
+
+    & h2 {
+        border: none;
+        margin-bottom: var(--spacing-lg, 1.5rem);
+    }
+
+    & p {
+        font-size: var(--font-size-lg, 1.125rem);
+        color: var(--color-text-secondary, #525252);
+    }
+}
+
+/* Page Title Section */
 main > div:first-child {
     background-color: var(--color-bg-secondary, #ffffff);
-    border: 2px solid var(--color-border-primary, #404040);
+    border: 1px solid var(--color-border-light, #e5e7eb);
+    border-radius: var(--radius-lg, 0.5rem);
     padding: var(--spacing-lg, 1.5rem);
     margin-bottom: var(--spacing-xl, 2rem);
 
     & h1 {
-        border-bottom: 2px solid var(--color-border-primary, #404040);
+        border-bottom: 2px solid var(--color-border-light, #e5e7eb);
         padding-bottom: var(--spacing-sm, 0.5rem);
         margin-bottom: 0;
         font-weight: 700;
@@ -259,25 +324,27 @@ main > div:first-child {
 }
 
 /* =================================================================
-   Card/Section Components - Grid Layout (10 pts)
-   Nested CSS (4 pts)
+   Card/Section Components - Enhanced visual design
    ================================================================= */
 section, article {
     background-color: var(--color-bg-secondary, #ffffff);
-    border: 2px solid var(--color-border-primary, #404040);
+    border: 1px solid var(--color-border-light, #e5e7eb);
     padding: var(--spacing-xl, 2rem);
     margin-bottom: var(--spacing-xl, 2rem);
+    border-radius: var(--radius-lg, 0.5rem);
     /* Transition (3 pts) */
-    transition: box-shadow var(--transition-base, 250ms);
+    transition: all var(--transition-base, 250ms);
 
     &:hover {
         box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+        border-color: var(--color-border-secondary, #737373);
     }
 
     & h2, & h3 {
-        border-bottom: 1px solid var(--color-border-secondary, #737373);
+        border-bottom: 2px solid var(--color-border-light, #e5e7eb);
         padding-bottom: var(--spacing-sm, 0.5rem);
         margin-bottom: var(--spacing-lg, 1.5rem);
+        color: var(--color-text-primary, #171717);
     }
 }
 
@@ -370,17 +437,37 @@ section h2 + div > div:has(svg) {
     margin-bottom: var(--spacing-xl, 2rem);
 }
 
-/* Project cards */
+/* Project cards - Enhanced with subtle animations */
 .project-card {
     display: flex;
     flex-direction: column;
     height: 100%;
     transition: all var(--transition-base, 250ms);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--color-accent, #2563eb), var(--color-accent-hover, #1d4ed8));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--transition-base, 250ms);
+    }
 
     &:hover {
         /* Transform (3 pts) */
         transform: translateY(-0.5rem);
         box-shadow: var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1));
+        border-color: var(--color-accent, #2563eb);
+
+        &::before {
+            transform: scaleX(1);
+        }
     }
 
     & > div:last-child {
@@ -438,7 +525,7 @@ section:has(table) {
                     background: color-mix(in srgb, var(--color-accent, #2563eb) 10%, var(--color-bg-secondary, #ffffff));
                     /* Transform (3 pts) */
                     transform: scale(1.05);
-                    box-shadow: var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1));
+                    box-shadow: var(--shadow-lg, 0 10px 15px -1px rgb(0 0 0 / 0.1));
                     z-index: var(--z-base, 1);
                 }
 
@@ -606,19 +693,22 @@ form {
     & input, & textarea {
         width: 100%;
         padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
-        border: 1px solid var(--color-border-secondary, #737373);
+        border: 1px solid var(--color-border-light, #e5e7eb);
+        border-radius: var(--radius-md, 0.25rem);
         font-family: var(--font-primary, sans-serif);
         font-size: var(--font-size-base, 1rem);
+        background-color: var(--color-bg-secondary, #ffffff);
         transition: all var(--transition-fast, 150ms);
 
         &:focus {
             outline: 2px solid var(--color-accent, #2563eb);
             outline-offset: 2px;
             border-color: var(--color-accent, #2563eb);
+            background-color: var(--color-bg-accent, #f0f9ff);
         }
 
         &:hover {
-            border-color: var(--color-border-primary, #404040);
+            border-color: var(--color-border-secondary, #737373);
         }
     }
 
@@ -629,24 +719,26 @@ form {
 }
 
 /* =================================================================
-   Buttons
+   Buttons - Enhanced for better usability
    ================================================================= */
 button, .button {
     display: inline-block;
     padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
-    border: 2px solid var(--color-border-primary, #404040);
-    background-color: var(--color-bg-secondary, #ffffff);
-    color: var(--color-text-primary, #171717);
+    border: 2px solid var(--color-accent, #2563eb);
+    background-color: var(--color-accent, #2563eb);
+    color: var(--color-bg-secondary, #ffffff);
     font-family: var(--font-primary, sans-serif);
     font-size: var(--font-size-base, 1rem);
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-base, 250ms);
+    border-radius: var(--radius-md, 0.25rem);
     /* Transform (3 pts) */
     transform: translateY(0);
 
     &:hover {
-        background-color: var(--color-hover-bg, #f5f5f5);
+        background-color: var(--color-accent-hover, #1d4ed8);
+        border-color: var(--color-accent-hover, #1d4ed8);
         /* Transform (3 pts) */
         transform: translateY(-2px);
         box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
@@ -654,35 +746,47 @@ button, .button {
 
     &:active {
         transform: translateY(0);
+        box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
     }
 
     &:focus-visible {
         outline: 2px solid var(--color-accent, #2563eb);
-        outline-offset: 2px;
+        outline-offset: 3px;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
     }
 }
 
 /* =================================================================
-   Progress Bars
+   Progress Bars - Enhanced with smooth animations
    ================================================================= */
 progress {
     width: 100%;
     height: 1.5rem;
-    border: 1px solid var(--color-border-secondary, #737373);
+    border: 1px solid var(--color-border-light, #e5e7eb);
+    border-radius: var(--radius-md, 0.25rem);
     appearance: none;
     -webkit-appearance: none;
+    overflow: hidden;
 
     &::-webkit-progress-bar {
         background-color: var(--color-bg-primary, #fafafa);
+        border-radius: var(--radius-md, 0.25rem);
     }
 
     &::-webkit-progress-value {
-        background-color: var(--color-accent, #2563eb);
+        background: linear-gradient(90deg, var(--color-accent, #2563eb), var(--color-accent-hover, #1d4ed8));
+        border-radius: var(--radius-md, 0.25rem);
         transition: width var(--transition-slow, 350ms);
     }
 
     &::-moz-progress-bar {
-        background-color: var(--color-accent, #2563eb);
+        background: linear-gradient(90deg, var(--color-accent, #2563eb), var(--color-accent-hover, #1d4ed8));
+        border-radius: var(--radius-md, 0.25rem);
     }
 }
 
@@ -763,10 +867,15 @@ img {
     object-position: center center;
 }
 
-/* Hero/Featured image */
+/* Hero/Featured image - Enhanced with subtle hover effect */
 section:has(img) img,
 article:has(img) img {
     margin-bottom: var(--spacing-md, 1rem);
+    transition: transform var(--transition-base, 250ms);
+
+    &:hover {
+        transform: scale(1.01);
+    }
 }
 
 /* Picture element */
@@ -859,14 +968,16 @@ project-card {
 }
 
 /* =================================================================
-   Footer
+   Footer - Enhanced design
    ================================================================= */
 footer {
     background-color: var(--color-bg-secondary, #ffffff);
-    border: 1px solid var(--color-border-primary, #404040);
+    border: 1px solid var(--color-border-light, #e5e7eb);
+    border-radius: var(--radius-lg, 0.5rem);
     padding: var(--spacing-lg, 1.5rem);
     margin-top: var(--spacing-2xl, 3rem);
     text-align: center;
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
 
     & nav {
         margin-bottom: var(--spacing-md, 1rem);
@@ -881,6 +992,15 @@ footer {
             & li {
                 & a {
                     font-weight: 500;
+                    padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem);
+                    border-radius: var(--radius-sm, 0.125rem);
+                    transition: all var(--transition-fast, 150ms);
+
+                    &:hover {
+                        background-color: var(--color-accent-light, #dbeafe);
+                        color: var(--color-accent, #2563eb);
+                        text-decoration: none;
+                    }
                 }
             }
         }
@@ -889,7 +1009,7 @@ footer {
     & p {
         margin: 0;
         font-size: var(--font-size-sm, 0.875rem);
-        color: var(--color-text-secondary, #525252);
+        color: var(--color-text-muted, #9ca3af);
     }
 }
 
@@ -1298,4 +1418,150 @@ dialog[open] {
 
 .font-mono {
     font-family: var(--font-mono, monospace);
+}
+
+/* =================================================================
+   Aesthetic & Accessibility Enhancements (added)
+   ================================================================= */
+
+/* Glass base class - apply to cards/containers for subtle translucency + blur */
+.glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    box-shadow: 0 8px 30px rgba(11,22,40,0.08);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+/* Apply glass aesthetic to major containers */
+header,
+section,
+article,
+footer,
+.project-card,
+main > div:first-child {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border-light);
+    /* add subtle glass look */
+    background: var(--glass-bg);
+    border: 1px solid color-mix(in srgb, var(--color-border-primary) 6%, transparent);
+    backdrop-filter: blur(4px) saturate(110%);
+}
+
+/* Deepen card contrast and add hover lift */
+section:hover,
+article:hover,
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(11,22,40,0.12);
+    border-color: color-mix(in srgb, var(--color-accent) 18%, var(--color-border-primary));
+}
+
+/* Buttons — richer gradient and accessible contrast */
+button, .button {
+    background-image: linear-gradient(180deg, var(--color-accent), var(--color-accent-hover));
+    border: 0;
+    color: white;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.18);
+}
+
+button:focus-visible, .button:focus-visible, a:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-accent) 55%, black);
+    outline-offset: 3px;
+    border-radius: var(--radius-md);
+}
+
+/* Links - stronger color and subtle underline animation */
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    background-image: linear-gradient(transparent, transparent), linear-gradient(var(--color-accent), var(--color-accent));
+    background-size: 0 2px, 100% 2px;
+    background-position: 0 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size var(--transition-fast), color var(--transition-fast);
+}
+a:hover {
+    background-size: 100% 2px, 100% 2px;
+    color: var(--color-accent-hover);
+}
+
+/* Improve focus visibility across interactive elements */
+:focus {
+    outline: none;
+}
+:focus-visible {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 18%, transparent);
+    border-radius: 6px;
+}
+
+/* Accent rim for project cards (subtle) */
+.project-card::before {
+    height: 4px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 85%, white) 0%, var(--color-accent-hover) 100%);
+}
+
+/* Background texture (very subtle) */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(11,22,40,0.01) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.7;
+    mix-blend-mode: overlay;
+}
+
+/* Reduce excessive white on images' border by using subtle contrast */
+img, picture img {
+    border-color: color-mix(in srgb, var(--color-border-primary) 8%, transparent);
+}
+
+/* Dark mode accessible palette override */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg-primary: #06121a;
+        --color-bg-secondary: rgba(11,18,26,0.6);
+        --color-bg-accent: #071427;
+        --color-surface: rgba(9,12,18,0.6);
+        --color-border-primary: rgba(255,255,255,0.08);
+        --color-border-secondary: rgba(255,255,255,0.12);
+        --color-border-light: rgba(255,255,255,0.02);
+        --color-text-primary: #e6eef6;
+        --color-text-secondary: #bcd3ee;
+        --color-text-muted: #9fb6d6;
+        --color-accent: #60a5fa;
+        --color-accent-hover: #3b82f6;
+        --glass-bg: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+        --glass-border: rgba(255,255,255,0.04);
+    }
+
+    body {
+        background: radial-gradient(1200px circle at 10% 10%, rgba(96,165,250,0.03), transparent 8%), linear-gradient(180deg, #041018 0%, #06121a 100%);
+        color: var(--color-text-primary);
+    }
+
+    header,
+    section,
+    article,
+    footer,
+    .project-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+}
+
+/* Respect reduced motion but keep subtle hover depth for spatial cues */
+@media (prefers-reduced-motion: reduce) {
+    section:hover,
+    article:hover,
+    .project-card:hover,
+    button:hover {
+        transform: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+    }
 }
