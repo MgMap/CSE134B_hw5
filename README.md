@@ -1,6 +1,8 @@
 # Portfolio Website - CSE 134 HW2
 
+**GitHub Repository**: [https://github.com/MgMap/cse134B_hw3](https://github.com/MgMap/cse134B_hw3)
 
+**Live Site**: [https://cse134b-hw3-1tl.pages.dev/](https://cse134b-hw3-1tl.pages.dev/)
 
 ## Baseline 2024 CSS Feature Implementation
 
