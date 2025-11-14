@@ -64,6 +64,47 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 }
 
+/* Theme overrides when JS toggles data-theme on the documentElement */
+/* These override a subset of color variables to provide a clear dark theme. */
+:root[data-theme="dark"] {
+    --color-bg: #0b1020;
+    --color-bg-alt: #11121a;
+    --color-bg-card: #0f1724;
+    --color-border: #3b82f6;
+    --color-border-pink: #f472b6;
+    --color-border-cyan: #06b6d4;
+    --color-text: #e6eef8;
+    --color-text-muted: #94a3b8;
+    --color-accent: #8b5cf6;
+    --color-accent-2: #ec4899;
+    --color-accent-3: #06b6d4;
+}
+
+/* Explicit light theme when user chooses 'light' via data-theme */
+:root[data-theme="light"] {
+    --color-primary: #0f172a;
+    --color-secondary: #1e293b;
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #7c3aed;
+    --color-accent-2: #ec4899;
+    --color-accent-3: #06b6d4;
+    --color-accent-4: #10b981;
+    --color-accent-5: #f59e0b;
+    --color-bg: #fef3ff;
+    --color-bg-alt: #f0f9ff;
+    --color-bg-card: #fff7ed;
+    --color-border: #8b5cf6;
+    --color-border-pink: #ec4899;
+    --color-border-cyan: #06b6d4;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+}
+
+/* Smooth transition for theme change */
+html, body {
+    transition: background-color 220ms ease, color 220ms ease;
+}
+
 /* CSS Reset */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -344,11 +385,8 @@ button, .button {
     display: inline-block;
     padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
     border: 3px solid var(--color-accent, #8b5cf6);
-    background: light-dark(
-        linear-gradient(135deg, var(--color-accent, #8b5cf6), var(--color-accent-2, #ec4899)),
-        linear-gradient(135deg, #6366f1, #ec4899)
-    );
-    color: light-dark(#ffffff, #f8fafc);
+    background: light-dark(#ffffff, #1e1b4b); /* same base as header links */
+    color: light-dark(#000000, #ffffff); /* black in light mode, white in dark mode */
     font-family: var(--font-primary, monospace);
     font-size: var(--font-size-base, 1rem);
     font-weight: 700;
@@ -359,31 +397,33 @@ button, .button {
     box-shadow: 4px 4px 0 var(--color-accent-5, #f59e0b);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-decoration: none;
+}
 
-    &:hover {
-        background: light-dark(
-            linear-gradient(135deg, var(--color-accent-hover, #7c3aed), #d946ef),
-            linear-gradient(135deg, #818cf8, #f472b6)
-        );
-        transform: translate(-2px, -2px);
-        box-shadow: 6px 6px 0 var(--color-accent-5, #f59e0b);
-    }
+button:hover, .button:hover {
+    background: light-dark(
+        linear-gradient(135deg, #f3e8ff, #fce7f3),
+        linear-gradient(135deg, #3730a3, #4338ca)
+    );
+    color: light-dark(#000000, #ffffff);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--color-accent-5, #f59e0b);
+}
 
-    &:active {
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0 var(--color-accent-5, #f59e0b);
-    }
+button:active, .button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--color-accent-5, #f59e0b);
+}
 
-    &:focus-visible {
-        outline: 3px dotted var(--color-accent-3, #06b6d4);
-        outline-offset: 3px;
-    }
+button:focus-visible, .button:focus-visible {
+    outline: 3px dotted var(--color-accent-3, #06b6d4);
+    outline-offset: 2px;
+}
 
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-    }
+button:disabled, .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(40%);
 }
 
 /* Forms */
@@ -444,6 +484,28 @@ form {
 }
 
 /* Progress Bars */
+/* Per-field inline message styles for form fields */
+.field-msg-wrap {
+    min-height: 1.25rem; /* reserve space to avoid layout shift */
+    margin-top: 0.25rem;
+}
+.field-msg {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    color: var(--color-text-muted, #64748b);
+    transition: color var(--transition-fast, 150ms), opacity var(--transition-fast, 150ms);
+    opacity: 1;
+}
+.field-error {
+    color: light-dark(#b91c1c, #fecaca); /* red in light, pale red in dark */
+    font-weight: 600;
+}
+.field-info {
+    color: light-dark(#065f46, #bbf7d0); /* green-ish */
+    font-weight: 600;
+}
+
 progress {
     width: 100%;
     height: 1.5rem;
@@ -843,3 +905,102 @@ main {
 .font-mono {
     font-family: var(--font-mono, monospace);
 }
+
+/* Contact form styles and improved validation UX (kept in CSS file) */
+
+.contact-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.contact-form legend {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.contact-form label {
+    display: block; /* ensures label sits above control */
+    font-weight: 600;
+    color: var(--color-text, #0f172a);
+}
+
+.contact-form label > span[aria-hidden] {
+    color: #b00020;
+    margin-left: 0.25rem;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 2px solid var(--color-border, #e5e7eb);
+    border-radius: var(--radius-md, 0.25rem);
+    background: light-dark(#ffffff, #0b1220);
+    color: var(--color-text, #0f172a);
+    font-size: var(--font-size-base, 1rem);
+    transition: box-shadow var(--transition-fast, 150ms), border-color var(--transition-fast, 150ms);
+}
+
+.contact-form textarea { min-height: 8rem; resize: vertical; }
+
+/* focus and keyboard visible state */
+.contact-form input:focus-visible, .contact-form textarea:focus-visible {
+    outline: 3px solid var(--color-accent, #8b5cf6);
+    outline-offset: 2px;
+    border-color: var(--color-accent, #8b5cf6);
+}
+
+/* default neutral appearance for untouched controls (avoid showing invalid immediately) */
+.contact-form input:placeholder-shown,
+.contact-form input:placeholder-shown:invalid {
+    box-shadow: none;
+}
+
+/* Show invalid only after focus or when user has typed (not placeholder-shown). For textarea, show on focus. */
+.contact-form input:invalid:focus,
+.contact-form input:invalid:not(:placeholder-shown),
+.contact-form textarea:invalid:focus {
+    border-color: #b00020;
+    box-shadow: 0 0 0 4px rgba(176,0,32,0.08);
+}
+
+.contact-form input:valid:not(:placeholder-shown) {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 4px rgba(16,163,127,0.08);
+}
+
+.output-error { color: #b00020; font-weight: 600; min-height: 1.25em; display:block; }
+.output-info { color: #0366d6; min-height: 1.25em; display:block; }
+
+/* Avoid layout shift by ensuring outputs keep space */
+.output-error, .output-info { min-height: 1.25em; }
+
+@media (max-width: 600px) {
+    .contact-form { padding: var(--spacing-md, 1rem); margin: 0.5rem; }
+}
+
+/* JS-enhanced form visuals */
+.flash {
+    animation: flash-err 300ms ease-in-out;
+}
+@keyframes flash-err {
+    0% { box-shadow: 0 0 0 6px rgba(176,0,32,0.22); }
+    100% { box-shadow: none; }
+}
+
+.char-counter {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #64748b);
+    text-align: right;
+}
+.char-counter.warning { color: #b00020; font-weight: 700; }
+
+.temp-visible {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
