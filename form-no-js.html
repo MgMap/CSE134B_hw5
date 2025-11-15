@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
   <title>Contact — No JS</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="js/theme-toggle.js" defer></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/view-transitions.js" defer></script>
 </head>
 <body>
   <noscript>
     <p>The theme toggle requires JavaScript; the site will load the default or your system theme.</p>
   </noscript>
-  <main>
-    <header>
+  <header>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">Theme</button>
         <h1>Min Aung Paing's Portfolio</h1>
         <nav>
             <ul>
@@ -20,13 +22,15 @@
                 <li><a href="projects.html">PROJECTS</a></li>
                 <li><a href="experiences.html">EXPERIENCES</a></li>
                 <li><a href="education.html">EDUCATION</a></li>
-                <li><a href="form-no-js.html"><strong>CONTACTnoJS</strong></a></li>
+                <li><a href="form-no-js.html"><strong>CONTACT</strong></a></li>
                 <li><a href="form-with-js.html">CONTACT JS</a></li>
 
             </ul>
         </nav>
-      
+
     </header>
+  <main>
+    
 
     <form class="contact-form" action="https://httpbin.org/post" method="post">
       <input type="hidden" name="possible_bot" value="true">

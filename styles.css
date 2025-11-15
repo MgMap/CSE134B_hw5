@@ -206,8 +206,10 @@ header {
         0 8px 16px rgb(139 92 246 / 0.2),
         0 8px 16px rgb(0 0 0 / 0.5)
     );
-    animation: slideDown 0.4s ease-out;
+    /* animation: slideDown 0.4s ease-out; */
     position: relative;
+    /* Reserve space for theme toggle to prevent layout shift */
+    min-height: 50px;
 
     & h1 {
         font-size: var(--font-size-3xl, 1.875rem);
@@ -636,6 +638,48 @@ iframe {
     display: block;
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: var(--spacing-md, 1rem);
+    right: var(--spacing-md, 1rem);
+    padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
+    border: 2px solid var(--color-accent, #8b5cf6);
+    background-color: light-dark(#fefefe, #1e1b4b);
+    color: var(--color-text, #0f172a);
+    font-weight: 600;
+    font-size: var(--font-size-sm, 0.875rem);
+    border-radius: 0;
+    cursor: pointer;
+    transition: all var(--transition-base, 250ms);
+    transform: translate(0, 0);
+    box-shadow: 3px 3px 0 var(--color-accent-2, #ec4899);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+
+.theme-toggle:hover {
+    background: light-dark(
+        linear-gradient(135deg, #f3e8ff, #fce7f3),
+        linear-gradient(135deg, #3730a3, #4338ca)
+    );
+    border-color: var(--color-accent-2, #ec4899);
+    color: var(--color-accent, #8b5cf6);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--color-accent-3, #06b6d4);
+}
+
+.theme-toggle:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--color-accent-2, #ec4899);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--color-accent-3, #06b6d4);
+    outline-offset: 2px;
+}
+
 /* Footer */
 footer {
     background: light-dark(
@@ -1004,3 +1048,48 @@ main {
     transition: opacity 0.4s ease-in-out;
 }
 
+/* ========================================
+   View Transition API - MPA Transitions
+   ======================================== */
+
+/* Enable view transitions for same-origin navigation */
+@view-transition {
+    navigation: auto;
+}
+
+/* Root transition animation for page changes */
+::view-transition-old(root) {
+    animation: fade-out 0.4s ease-in-out;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 0.4s ease-in-out;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        /* transform: translateY(30px); */
+    }
+    to {
+        opacity: 1;
+        /* transform: translateY(0); */
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+}
