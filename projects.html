@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="js/theme-toggle.js"></script>
     <script src="js/view-transitions.js" defer></script>
+    <script src="js/project-card.js" defer></script>
 </head>
 <body>
     <noscript>
@@ -46,14 +47,16 @@
         <!-- Projects Grid -->
         <section class="projects-grid">
             <!-- Project 1 -->
-            <article class="project-card">
+            <project-card>
                 <h2>Detector-Redactor</h2>
-                <img src="Assets/detector_redeactor.gif"
-                     alt="Data security and privacy concept showing PII detection and redaction system"
-                     width="400"
-                     height="300"
-                     loading="lazy"
-                     class="project-image">
+                <picture>
+                    <img src="Assets/detector_redeactor.gif"
+                         alt="Data security and privacy concept showing PII detection and redaction system"
+                         width="400"
+                         height="300"
+                         loading="lazy"
+                         class="project-image">
+                </picture>
                 <p>A Python tool designed to <b>analyze and redact Personally Identifiable Information (PII)</b> from text using the Presidio library. Features <i>custom recognizers</i>, <em>multi-language support</em>, and context-aware detection with scoring mechanisms.</p>
                 <h3>Key Features:</h3>
                 <ul>
@@ -64,17 +67,19 @@
                 </ul>
                 <p><b>Technologies:</b> <span>Python</span>, <span>Presidio</span>, <span>YAML</span></p>
                 <a href="https://github.com/MgMap/Detector-Redactor" target="_blank"><button type="button">GitHub</button></a>
-            </article>
+            </project-card>
 
             <!-- Project 2 -->
-            <article class="project-card">
+            <project-card>
                 <h2>PayRoll Manager</h2>
-                <img src="Assets/pay_roll_manager.gif"
-                     alt="Payroll management system with employee data and salary calculations"
-                     width="400"
-                     height="300"
-                     loading="lazy"
-                     class="project-image">
+                <picture>
+                    <img src="Assets/pay_roll_manager.gif"
+                         alt="Payroll management system with employee data and salary calculations"
+                         width="400"
+                         height="300"
+                         loading="lazy"
+                         class="project-image">
+                </picture>
                 <p>A comprehensive program designed to <b>manage payroll tasks efficiently</b> using advanced data structures like file trees, priority queues, and heaps. Features a <i>user-friendly GUI</i> built with <em>SFML</em> for smooth user experience.</p>
                 <h3>Key Features:</h3>
                 <ul>
@@ -85,38 +90,42 @@
                 </ul>
                 <p><b>Technologies:</b> <span>C++</span>, <span>SFML</span>, <span>CMake</span></p>
                 <a href="https://github.com/MgMap/PayRoll-Manager" target="_blank"><button type="button">GitHub</button></a>
-            </article>
+            </project-card>
 
             <!-- Project 3 -->
-            <article class="project-card">
+            <project-card>
                 <h2>CPP-ASM Exam App</h2>
-                <img src="Assets/examappdemo.png"
-                     alt="Code editor interface for C++ and assembly language exam application"
-                     width="400"
-                     height="300"
-                     loading="lazy"
-                     class="project-image">
+                <picture>
+                    <img src="Assets/examappdemo.png"
+                         alt="Code editor interface for C++ and assembly language exam application"
+                         width="400"
+                         height="300"
+                         loading="lazy"
+                         class="project-image">
+                </picture>
                 <p>An <b>Electron-based desktop application</b> designed to facilitate C++ and assembly language exams. Features an <i>integrated development environment</i> with code compilation, execution, and <em>proctoring features</em> for educational assessment.</p>
                 <h3>Key Features:</h3>
                 <ul>
                     <li>ACE editor with C++ syntax highlighting</li>
-                    <li>Compilation & execution with error reporting</li>
+                    <li>Compilation &amp; execution with error reporting</li>
                     <li>Canvas LMS integration</li>
                     <li>Proctoring controls and lockdown features</li>
                 </ul>
                 <p><b>Technologies:</b> <span>C++</span>, <span>JavaScript</span>, <span>Electron</span></p>
                 <a href="https://github.com/MgMap/CPP-ASM-Exam-APP" target="_blank"><button type="button">GitHub</button></a>
-            </article>
+            </project-card>
 
             <!-- Project 4 -->
-            <article class="project-card">
+            <project-card>
                 <h2>Assembly Typing Game</h2>
-                <img src="Assets/asm_typing_demo.gif"
-                     alt="Typing game interface for learning assembly language instructions"
-                     width="400"
-                     height="300"
-                     loading="lazy"
-                     class="project-image">
+                <picture>
+                    <img src="Assets/asm_typing_demo.gif"
+                         alt="Typing game interface for learning assembly language instructions"
+                         width="400"
+                         height="300"
+                         loading="lazy"
+                         class="project-image">
+                </picture>
                 <p>An <b>educational typing practice game</b> that helps users improve typing speed and accuracy while learning <i>assembly language instructions</i>. Features <em>three difficulty modes</em> with progressively challenging content and a scoring system.</p>
                 <h3>Key Features:</h3>
                 <ul>
@@ -127,7 +136,7 @@
                 </ul>
                 <p><b>Technologies:</b> <span>Assembly</span>, <span>Visual Studio</span>, <span>Education</span></p>
                 <a href="https://github.com/MgMap/Typing-Game" target="_blank"><button type="button">GitHub</button></a>
-            </article>
+            </project-card>
         </section>
 
         <!-- Recent Blog Post -->
@@ -150,11 +159,6 @@
             <p><a href="#more-projects">View All Projects on GitHub</a></p>
         </aside>
 
-        <!-- Custom Semantic Element -->
-        <project-card>
-            <h3>More Projects Coming Soon</h3>
-            <p>Check back regularly for updates on new projects</p>
-        </project-card>
     </main>
 
     <footer>
