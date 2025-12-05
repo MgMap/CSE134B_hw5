@@ -1094,9 +1094,66 @@ main {
 
 .output-error { color: #b00020; font-weight: 600; min-height: 1.25em; display:block; }
 .output-info { color: #0366d6; min-height: 1.25em; display:block; }
+.output-success { color: #16a34a; font-weight: 600; min-height: 1.25em; display:block; }
 
 /* Avoid layout shift by ensuring outputs keep space */
-.output-error, .output-info { min-height: 1.25em; }
+.output-error, .output-info, .output-success { min-height: 1.25em; }
+
+/* CRUD Page Styles */
+.crud-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--color-surface, #f8fafc);
+    border-radius: 8px;
+}
+
+.crud-controls label {
+    font-weight: 600;
+}
+
+.crud-controls select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn-danger:disabled {
+    background-color: #fca5a5;
+    cursor: not-allowed;
+}
+
+.form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.form-buttons button {
+    min-width: 140px;
+}
+
+.form-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 
 @media (max-width: 600px) {
     .contact-form { padding: var(--spacing-md, 1rem); margin: 0.5rem; }

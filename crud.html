@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CRUD operations for managing portfolio projects">
+    <meta name="author" content="Min Aung Paing">
+    <meta name="view-transition" content="same-origin">
+    <title>CRUD - Project Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/view-transitions.js" defer></script>
+    <script src="js/crud.js" defer></script>
+</head>
+<body>
+    <noscript>
+        <p>This page requires JavaScript to manage projects.</p>
+    </noscript>
+    <header>
+        <select id="theme-picker" class="theme-picker" aria-label="Select theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="ocean">Ocean</option>
+            <option value="forest">Forest</option>
+            <option value="sunset">Sunset</option>
+        </select>
+        <h1>Min Aung Paing's Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="experiences.html">EXPERIENCES</a></li>
+                <li><a href="education.html">EDUCATION</a></li>
+                <li><a href="form-no-js.html">CONTACT</a></li>
+                <li><a href="form-with-js.html">CONTACT JS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <header>
+            <h1>Project Manager (CRUD)</h1>
+            <p>Create, Update, and Delete projects in localStorage. Changes will appear on the <a href="projects.html">Projects page</a> when clicking "Load Local".</p>
+        </header>
+
+        <!-- Project Selection -->
+        <section class="crud-controls">
+            <label for="project-select">Select Existing Project:</label>
+            <select id="project-select">
+                <option value="">-- New Project --</option>
+            </select>
+            <button type="button" id="load-btn">Load</button>
+            <button type="button" id="delete-btn" class="btn-danger">Delete</button>
+        </section>
+
+        <!-- Status Messages -->
+        <output id="crud-status" class="output-info" aria-live="polite"></output>
+
+        <!-- Project Form -->
+        <form id="project-form" class="contact-form">
+            <fieldset>
+                <legend>Project Details</legend>
+
+                <label for="title">Title <span aria-hidden="true">*</span></label>
+                <input id="title" name="title" type="text" required aria-required="true" placeholder="Project Name">
+
+                <label for="image">Image URL <span aria-hidden="true">*</span></label>
+                <input id="image" name="image" type="url" required aria-required="true" placeholder="https://example.com/image.png">
+
+                <label for="alt">Alt Text <span aria-hidden="true">*</span></label>
+                <input id="alt" name="alt" type="text" required aria-required="true" placeholder="Description of the image">
+
+                <label for="description">Description <span aria-hidden="true">*</span></label>
+                <textarea id="description" name="description" rows="4" required aria-required="true" placeholder="Project description (HTML tags like <b> and <i> are supported)"></textarea>
+
+                <label for="features">Features (one per line)</label>
+                <textarea id="features" name="features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea>
+
+                <label for="technologies">Technologies (comma-separated)</label>
+                <input id="technologies" name="technologies" type="text" placeholder="HTML, CSS, JavaScript">
+
+                <label for="link">Project Link <span aria-hidden="true">*</span></label>
+                <input id="link" name="link" type="url" required aria-required="true" placeholder="https://github.com/username/repo">
+
+                <label for="linkText">Link Button Text</label>
+                <input id="linkText" name="linkText" type="text" placeholder="GitHub (default)">
+            </fieldset>
+
+            <p class="form-buttons">
+                <button type="submit" id="create-btn">Create New</button>
+                <button type="button" id="update-btn">Update Selected</button>
+                <button type="button" id="clear-btn">Clear Form</button>
+            </p>
+        </form>
+
+        <footer class="text-center">
+            <p><a href="projects.html">← Back to Projects</a></p>
+        </footer>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Min Aung Paing. All rights reserved.</p>
+    </footer>
+</body>
+</html>
