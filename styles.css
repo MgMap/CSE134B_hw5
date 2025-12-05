@@ -1180,6 +1180,30 @@ main {
     transition: opacity 0.4s ease-in-out;
 }
 
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.15);
+}
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+}
+
+
+
 /* ========================================
    View Transition API - MPA Transitions
    ======================================== */
